@@ -41,9 +41,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write \"src/**/*.js\"",
-    "lint": "eslint src/**/*.js src/**/*.jsx",
-    "lint:fix": "eslint src/**/*.js --fix"
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "lint": "eslint src/**/*.ts src/**/*.tsx",
+    "lint:fix:ts": "eslint src/**/*.ts --fix",
+    "lint:fix:tsx": "eslint src/**/*.tsx --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -52,8 +53,13 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/eslint-parser": "^7.18.2",
     "@types/sortablejs": "1.13.0",
-    "eslint": "^8.15.0",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "eslint": ">=5.16.0",
+    "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.30.0",
     "node-sass": "^7.0.1",
