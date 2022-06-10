@@ -1,9 +1,9 @@
 // import { useEffect, useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { handleLayout, handleLastLayout } from '../../redux/layout'
-import {RootState} from "../../redux/reducers/RootReducer";
-import {Layout} from "../../domains/interfaces/Layout";
-import {LayoutTypes} from "../../domains/enums/LayoutTypes";
+import { useDispatch, useSelector } from "react-redux";
+import { handleLayout, handleLastLayout } from "../../redux/layout";
+import { RootState } from "../../redux/reducers/RootReducer";
+import { Layout } from "../../domains/interfaces/Layout";
+import { LayoutTypes } from "../../domains/enums/LayoutTypes";
 
 export interface useLayoutInterface {
   layout: LayoutTypes;
@@ -13,16 +13,16 @@ export interface useLayoutInterface {
 }
 
 export const useLayout = () => {
-  const dispatch = useDispatch()
-  const store: Layout  = useSelector((state: RootState) => state.layout)
+  const dispatch = useDispatch();
+  const store: Layout = useSelector((state: RootState) => state.layout);
 
   const setLayout = (value: LayoutTypes) => {
     dispatch(handleLayout(value));
-  }
+  };
 
   const setLastLayout = (value: LayoutTypes) => {
     dispatch(handleLastLayout(value));
-  }
+  };
 
   // const handleLayoutUpdate = useCallback(() => {
   //   // ** If layout is horizontal & screen size is equals to or below 1200
@@ -47,21 +47,34 @@ export const useLayout = () => {
   // }, [store.layout, store.lastLayout])
 
   if (window) {
-    const breakpoint = 1200
+    const breakpoint = 1200;
 
     if (window.innerWidth < breakpoint) {
-      setLayout(LayoutTypes.vertical)
+      setLayout(LayoutTypes.vertical);
     }
 
-    window.addEventListener('resize', () => {
-      if (window.innerWidth <= breakpoint && store.lastLayout !== 'vertical' && store.type !== 'vertical') {
-        setLayout(LayoutTypes.vertical)
+    window.addEventListener("resize", () => {
+      if (
+        window.innerWidth <= breakpoint &&
+        store.lastLayout !== "vertical" &&
+        store.type !== "vertical"
+      ) {
+        setLayout(LayoutTypes.vertical);
       }
-      if (window.innerWidth >= breakpoint && store.lastLayout && store.lastLayout !== store.type) {
-        setLayout(store.lastLayout)
+      if (
+        window.innerWidth >= breakpoint &&
+        store.lastLayout &&
+        store.lastLayout !== store.type
+      ) {
+        setLayout(store.lastLayout);
       }
-    })
+    });
   }
 
-  return { layout: store.type, setLayout, lastLayout: store.lastLayout, setLastLayout }
-}
+  return {
+    layout: store.type,
+    setLayout,
+    lastLayout: store.lastLayout,
+    setLastLayout,
+  };
+};

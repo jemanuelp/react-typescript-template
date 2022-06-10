@@ -1,7 +1,7 @@
-import { forwardRef } from 'react'
-import Proptypes from 'prop-types'
-import classnames from 'classnames'
-import { Badge } from 'reactstrap'
+import { forwardRef } from "react";
+import Proptypes from "prop-types";
+import classnames from "classnames";
+import { Badge } from "reactstrap";
 
 const Avatar = forwardRef((props: any, ref) => {
   // ** Props
@@ -23,32 +23,32 @@ const Avatar = forwardRef((props: any, ref) => {
     imgClassName,
     contentStyles,
     ...rest
-  } = props
+  } = props;
 
   // ** Function to extract initials from content
   const getInitials = (str: string) => {
     const results: any[] = [];
-    const wordArray = str.split(' ')
-    wordArray.forEach(e => {
-      results.push(e[0])
-    })
-    return results.join('')
-  }
+    const wordArray = str.split(" ");
+    wordArray.forEach((e) => {
+      results.push(e[0]);
+    });
+    return results.join("");
+  };
 
   return (
     <Tag
-      className={classnames('avatar', {
+      className={classnames("avatar", {
         [className]: className,
         [`bg-${color}`]: color,
-        [`avatar-${size}`]: size
+        [`avatar-${size}`]: size,
       })}
       ref={ref}
       {...rest}
     >
       {img === false || img === undefined ? (
         <span
-          className={classnames('avatar-content', {
-            'position-relative': badgeUp
+          className={classnames("avatar-content", {
+            "position-relative": badgeUp,
           })}
           style={contentStyles}
         >
@@ -56,18 +56,22 @@ const Avatar = forwardRef((props: any, ref) => {
 
           {icon ? icon : null}
           {badgeUp ? (
-            <Badge color={badgeColor ? badgeColor : 'primary'} className='badge-sm badge-up' pill>
-              {badgeText ? badgeText : '0'}
+            <Badge
+              color={badgeColor ? badgeColor : "primary"}
+              className="badge-sm badge-up"
+              pill
+            >
+              {badgeText ? badgeText : "0"}
             </Badge>
           ) : null}
         </span>
       ) : (
         <img
           className={classnames({
-            [imgClassName]: imgClassName
+            [imgClassName]: imgClassName,
           })}
           src={img}
-          alt='avatarImg'
+          alt="avatarImg"
           height={imgHeight && !size ? imgHeight : 32}
           width={imgWidth && !size ? imgWidth : 32}
         />
@@ -76,15 +80,15 @@ const Avatar = forwardRef((props: any, ref) => {
         <span
           className={classnames({
             [`avatar-status-${status}`]: status,
-            [`avatar-status-${size}`]: size
+            [`avatar-status-${size}`]: size,
           })}
         ></span>
       ) : null}
     </Tag>
-  )
-})
+  );
+});
 
-export default Avatar
+export default Avatar;
 
 // ** PropTypes
 Avatar.propTypes = {
@@ -96,58 +100,61 @@ Avatar.propTypes = {
   className: Proptypes.string,
   imgClassName: Proptypes.string,
   contentStyles: Proptypes.object,
-  size: Proptypes.oneOf(['sm', 'lg', 'xl']),
+  size: Proptypes.oneOf(["sm", "lg", "xl"]),
   tag: Proptypes.oneOfType([Proptypes.func, Proptypes.string]),
-  status: Proptypes.oneOf(['online', 'offline', 'away', 'busy']),
+  status: Proptypes.oneOf(["online", "offline", "away", "busy"]),
   imgHeight: Proptypes.oneOfType([Proptypes.string, Proptypes.number]),
   imgWidth: Proptypes.oneOfType([Proptypes.string, Proptypes.number]),
   badgeColor: Proptypes.oneOf([
-    'primary',
-    'secondary',
-    'success',
-    'danger',
-    'info',
-    'warning',
-    'dark',
-    'light-primary',
-    'light-secondary',
-    'light-success',
-    'light-danger',
-    'light-info',
-    'light-warning',
-    'light-dark'
+    "primary",
+    "secondary",
+    "success",
+    "danger",
+    "info",
+    "warning",
+    "dark",
+    "light-primary",
+    "light-secondary",
+    "light-success",
+    "light-danger",
+    "light-info",
+    "light-warning",
+    "light-dark",
   ]),
   color: Proptypes.oneOf([
-    'primary',
-    'secondary',
-    'success',
-    'danger',
-    'info',
-    'warning',
-    'dark',
-    'light-primary',
-    'light-secondary',
-    'light-success',
-    'light-danger',
-    'light-info',
-    'light-warning',
-    'light-dark'
+    "primary",
+    "secondary",
+    "success",
+    "danger",
+    "info",
+    "warning",
+    "dark",
+    "light-primary",
+    "light-secondary",
+    "light-success",
+    "light-danger",
+    "light-info",
+    "light-warning",
+    "light-dark",
   ]),
   initials(props) {
-    if (props['initials'] && props['content'] === undefined) {
-      return new Error('content prop is required with initials prop.')
+    if (props["initials"] && props["content"] === undefined) {
+      return new Error("content prop is required with initials prop.");
     }
-    if (props['initials'] && typeof props['content'] !== 'string') {
-      return new Error('content prop must be a string.')
+    if (props["initials"] && typeof props["content"] !== "string") {
+      return new Error("content prop must be a string.");
     }
-    if (typeof props['initials'] !== 'boolean' && props['initials'] !== undefined) {
-      return new Error('initials must be a boolean!')
+    if (
+      typeof props["initials"] !== "boolean" &&
+      props["initials"] !== undefined
+    ) {
+      return new Error("initials must be a boolean!");
     }
     return null;
-  }
-}
+  },
+};
 
 // ** Default Props
 Avatar.defaultProps = {
-  tag: 'div'
-}
+  tag: "div",
+};

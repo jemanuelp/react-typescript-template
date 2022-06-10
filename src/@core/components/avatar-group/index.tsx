@@ -1,60 +1,67 @@
-import { Fragment } from 'react'
-import Proptypes from 'prop-types'
-import classnames from 'classnames'
-import { UncontrolledTooltip } from 'reactstrap'
+import { Fragment } from "react";
+import Proptypes from "prop-types";
+import classnames from "classnames";
+import { UncontrolledTooltip } from "reactstrap";
 import Avatar from "../avatar";
 
 const AvatarGroup = (props: any) => {
   // ** Props
-  const { data, tag, className } = props
+  const { data, tag, className } = props;
 
   // ** Conditional Tag
-  const Tag = tag ? tag : 'div'
+  const Tag = tag ? tag : "div";
 
   // ** Render Data
   const renderData = () => {
     return data.map((item: any, i: any) => {
-      const ItemTag = item.tag ? item.tag : 'div'
+      const ItemTag = item.tag ? item.tag : "div";
       return (
         <Fragment key={i}>
           {item.title ? (
-            <UncontrolledTooltip placement={item.placement} target={item.title.split(' ').join('-')}>
+            <UncontrolledTooltip
+              placement={item.placement}
+              target={item.title.split(" ").join("-")}
+            >
               {item.title}
             </UncontrolledTooltip>
           ) : null}
           {!item.meta ? (
             <Avatar
               tag={ItemTag}
-              className={classnames('pull-up', {
-                [item.className]: item.className
+              className={classnames("pull-up", {
+                [item.className]: item.className,
               })}
-              {...(item.title ? { id: item.title.split(' ').join('-') } : {})}
+              {...(item.title ? { id: item.title.split(" ").join("-") } : {})}
               {...item}
               title={undefined}
               meta={undefined}
             />
           ) : null}
-          {item.meta ? <ItemTag className='d-flex align-items-center ps-1'>{item.meta}</ItemTag> : null}
+          {item.meta ? (
+            <ItemTag className="d-flex align-items-center ps-1">
+              {item.meta}
+            </ItemTag>
+          ) : null}
         </Fragment>
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <Tag
-      className={classnames('avatar-group', {
-        [className]: className
+      className={classnames("avatar-group", {
+        [className]: className,
       })}
     >
       {renderData()}
     </Tag>
-  )
-}
+  );
+};
 
-export default AvatarGroup
+export default AvatarGroup;
 
 // ** PropTypes
 AvatarGroup.propTypes = {
   data: Proptypes.array.isRequired,
-  tag: Proptypes.oneOfType([Proptypes.func, Proptypes.string])
-}
+  tag: Proptypes.oneOfType([Proptypes.func, Proptypes.string]),
+};

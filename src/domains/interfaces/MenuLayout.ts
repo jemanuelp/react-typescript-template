@@ -1,4 +1,4 @@
 export interface MenuLayout {
-    isHidden: boolean;
-    isCollapsed: boolean;
+  isHidden: boolean;
+  isCollapsed: boolean;
 }

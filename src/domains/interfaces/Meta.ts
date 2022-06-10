@@ -1,3 +1,3 @@
 export interface Meta {
-    layout: string;
+  layout: string;
 }

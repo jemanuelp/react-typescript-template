@@ -1,5 +1,5 @@
 export enum ContentWidthTypes {
-    Default = 'full',
-    full = 'full',
-    boxed = 'boxed',
+  Default = "full",
+  full = "full",
+  boxed = "boxed",
 }

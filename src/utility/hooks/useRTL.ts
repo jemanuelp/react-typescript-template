@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import {handleRTL} from "../../redux/layout";
-import {RootState} from "../../redux/reducers/RootReducer";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { handleRTL } from "../../redux/layout";
+import { RootState } from "../../redux/reducers/RootReducer";
 
 export interface useRTLInterface {
   isRtl: boolean;
@@ -10,25 +10,25 @@ export interface useRTLInterface {
 
 export const useRTL = (): useRTLInterface => {
   // ** Store Vars
-  const dispatch = useDispatch()
-  const isRtl: boolean = useSelector((state: RootState) => state.layout.isRTL)
+  const dispatch = useDispatch();
+  const isRtl: boolean = useSelector((state: RootState) => state.layout.isRTL);
 
   // ** Return a wrapped version of useState's setter function
   const setIsRtl = (value: boolean) => {
-    dispatch(handleRTL(value))
-  }
+    dispatch(handleRTL(value));
+  };
 
   useEffect(() => {
     // ** Get HTML Tag
-    const element = document.getElementsByTagName('html')[0]
+    const element = document.getElementsByTagName("html")[0];
 
     // ** If isRTL then add attr dir='rtl' with HTML else attr dir='ltr'
     if (isRtl) {
-      element.setAttribute('dir', 'rtl')
+      element.setAttribute("dir", "rtl");
     } else {
-      element.setAttribute('dir', 'ltr')
+      element.setAttribute("dir", "ltr");
     }
-  }, [isRtl])
+  }, [isRtl]);
 
-  return { isRtl, setIsRtl};
-}
+  return { isRtl, setIsRtl };
+};

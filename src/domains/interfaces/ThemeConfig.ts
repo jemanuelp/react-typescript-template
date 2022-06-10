@@ -1,7 +1,7 @@
-import {AppLayout} from "./AppLayout";
-import {Layout} from "./Layout";
+import { AppLayout } from "./AppLayout";
+import { Layout } from "./Layout";
 
 export interface ThemeConfig {
-    app: AppLayout;
-    layout: Layout
+  app: AppLayout;
+  layout: Layout;
 }

@@ -1,12 +1,12 @@
-import {useRoutes} from 'react-router-dom'
-import {Route} from "../domains/interfaces/Route";
+import { useRoutes } from 'react-router-dom';
+import { Route } from '../domains/interfaces/Route';
 
 interface RouterProps {
-    allRoutes: Route[];
+  allRoutes: Route[];
 }
 
 const Router = ({ allRoutes }: RouterProps) => {
-  return useRoutes([...allRoutes])
-}
+  return useRoutes([...allRoutes]);
+};
 
-export default Router
+export default Router;

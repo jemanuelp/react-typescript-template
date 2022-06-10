@@ -1,9 +1,9 @@
-import {useEffect, useState, Fragment, forwardRef} from 'react'
-import Stepper from 'bs-stepper'
-import classnames from 'classnames'
-import { ChevronRight } from 'react-feather'
-import 'bs-stepper/dist/css/bs-stepper.min.css'
-import '../../../@core/scss/base/plugins/forms/form-wizard.scss'
+import { useEffect, useState, Fragment, forwardRef } from "react";
+import Stepper from "bs-stepper";
+import classnames from "classnames";
+import { ChevronRight } from "react-feather";
+import "bs-stepper/dist/css/bs-stepper.min.css";
+import "../../../@core/scss/base/plugins/forms/form-wizard.scss";
 import PropTypes from "prop-types";
 
 const Wizard = forwardRef((props: any, ref: any) => {
@@ -17,100 +17,116 @@ const Wizard = forwardRef((props: any, ref: any) => {
     className,
     headerClassName,
     contentClassName,
-    contentWrapperClassName
-  } = props
+    contentWrapperClassName,
+  } = props;
 
   // ** State
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0);
 
   // ** Vars
   let stepper;
 
   // ** Step change listener on mount
   useEffect(() => {
-    stepper = new Stepper(ref.current, options)
+    stepper = new Stepper(ref.current, options);
 
     if (ref && ref.current) {
-        ref.current.addEventListener('shown.bs-stepper', function (event: any) {
-            setActiveIndex(event.detail.indexStep)
-        })
+      ref.current.addEventListener("shown.bs-stepper", function (event: any) {
+        setActiveIndex(event.detail.indexStep);
+      });
     }
 
     if (instance) {
-      instance(stepper)
+      instance(stepper);
     }
-  }, [])
+  }, []);
 
   // ** Renders Wizard Header
   const renderHeader = () => {
     return steps.map((step: any, index: any) => {
       return (
         <Fragment key={step.id}>
-          {index !== 0 && index !== steps.length ? <div className='line'>{separator}</div> : null}
+          {index !== 0 && index !== steps.length ? (
+            <div className="line">{separator}</div>
+          ) : null}
           <div
-            className={classnames('step', {
+            className={classnames("step", {
               crossed: activeIndex > index,
-              active: index === activeIndex
+              active: index === activeIndex,
             })}
             data-target={`#${step.id}`}
           >
-            <button type='button' className='step-trigger'>
-              <span className='bs-stepper-box'>{step.icon ? step.icon : index + 1}</span>
-              <span className='bs-stepper-label'>
-                <span className='bs-stepper-title'>{step.title}</span>
-                {step.subtitle ? <span className='bs-stepper-subtitle'>{step.subtitle}</span> : null}
+            <button type="button" className="step-trigger">
+              <span className="bs-stepper-box">
+                {step.icon ? step.icon : index + 1}
+              </span>
+              <span className="bs-stepper-label">
+                <span className="bs-stepper-title">{step.title}</span>
+                {step.subtitle ? (
+                  <span className="bs-stepper-subtitle">{step.subtitle}</span>
+                ) : null}
               </span>
             </button>
           </div>
         </Fragment>
-      )
-    })
-  }
+      );
+    });
+  };
 
   // ** Renders Wizard Content
   const renderContent = () => {
     return steps.map((step: any, index: any) => {
       return (
         <div
-          className={classnames('content', {
+          className={classnames("content", {
             [contentClassName]: contentClassName,
-            'active dstepper-block': activeIndex === index
+            "active dstepper-block": activeIndex === index,
           })}
           id={step.id}
           key={step.id}
         >
           {step.content}
         </div>
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <div
       ref={ref}
-      className={classnames('bs-stepper', {
+      className={classnames("bs-stepper", {
         [className]: className,
-        vertical: type === 'vertical',
-        'vertical wizard-modern': type === 'modern-vertical',
-        'wizard-modern': type === 'modern-horizontal'
+        vertical: type === "vertical",
+        "vertical wizard-modern": type === "modern-vertical",
+        "wizard-modern": type === "modern-horizontal",
       })}
     >
-      <div className={classnames('bs-stepper-header', { [headerClassName]: headerClassName })}>{renderHeader()}</div>
-      <div className={classnames('bs-stepper-content', { [contentWrapperClassName]: contentWrapperClassName })}>
+      <div
+        className={classnames("bs-stepper-header", {
+          [headerClassName]: headerClassName,
+        })}
+      >
+        {renderHeader()}
+      </div>
+      <div
+        className={classnames("bs-stepper-content", {
+          [contentWrapperClassName]: contentWrapperClassName,
+        })}
+      >
         {renderContent()}
       </div>
     </div>
-  )
-})
+  );
+});
 
-export default Wizard
+export default Wizard;
 
 // ** Default Props
 Wizard.defaultProps = {
   options: {},
-  type: 'horizontal',
-  separator: <ChevronRight size={17} />
-}
+  type: "horizontal",
+  separator: <ChevronRight size={17} />,
+};
 
 // ** PropTypes
 Wizard.propTypes = {
@@ -128,7 +144,7 @@ Wizard.propTypes = {
       title: PropTypes.string.isRequired,
       subtitle: PropTypes.string,
       icon: PropTypes.any,
-      content: PropTypes.any.isRequired
+      content: PropTypes.any.isRequired,
     })
-  ).isRequired
-}
+  ).isRequired,
+};
